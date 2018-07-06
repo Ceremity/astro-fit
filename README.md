@@ -1,1 +1,3 @@
-# astro-fit
+# ceremity-vr
+
+**"Better description"**

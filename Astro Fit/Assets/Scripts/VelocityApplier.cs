@@ -11,13 +11,24 @@ public class VelocityApplier : MonoBehaviour {
     private Vector3 speed;
 
 	// Use this for initialization
-	void Start () {
+	void Start ()
+    {
         rb = GetComponent<Rigidbody>();
+        SetVelocity();
+    }
+
+    public void SetVelocity()
+    {
         rb.velocity = speed;
     }
 
-    // Update is called once per frame
-    void Update () {
-		
-	}
+    public void Pause()
+    {
+        rb.velocity = Vector3.zero;
+    }
+
+    public void UnPause()
+    {
+        SetVelocity();
+    }
 }

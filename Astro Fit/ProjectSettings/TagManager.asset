@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Teleportable
   - Breakable
+  - Controller
   layers:
   - Default
   - TransparentFX

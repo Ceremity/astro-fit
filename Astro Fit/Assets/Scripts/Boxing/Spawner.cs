@@ -9,24 +9,24 @@ public class Spawner : MonoBehaviour {
     [SerializeField]
     private GameObject breakablePrefab;
 	void Update () {
-        if (Input.GetKeyDown(KeyCode.Alpha1))
-            Spawn(1);
-        if (Input.GetKeyDown(KeyCode.Alpha2))
-            Spawn(2);
-        if (Input.GetKeyDown(KeyCode.Alpha3))
-            Spawn(3);
-        if (Input.GetKeyDown(KeyCode.Alpha4))
-            Spawn(4);
-        if (Input.GetKeyDown(KeyCode.Alpha5))
-            Spawn(5);
-        if (Input.GetKeyDown(KeyCode.Alpha6))
-            Spawn(6);
-        if (Input.GetKeyDown(KeyCode.Alpha7))
-            Spawn(7);
-        if (Input.GetKeyDown(KeyCode.Alpha8))
-            Spawn(8);
-        if (Input.GetKeyDown(KeyCode.Alpha9))
-            Spawn(9);
+        //if (Input.GetKeyDown(KeyCode.Alpha1))
+        //    Spawn(1);
+        //if (Input.GetKeyDown(KeyCode.Alpha2))
+        //    Spawn(2);
+        //if (Input.GetKeyDown(KeyCode.Alpha3))
+        //    Spawn(3);
+        //if (Input.GetKeyDown(KeyCode.Alpha4))
+        //    Spawn(4);
+        //if (Input.GetKeyDown(KeyCode.Alpha5))
+        //    Spawn(5);
+        //if (Input.GetKeyDown(KeyCode.Alpha6))
+        //    Spawn(6);
+        //if (Input.GetKeyDown(KeyCode.Alpha7))
+        //    Spawn(7);
+        //if (Input.GetKeyDown(KeyCode.Alpha8))
+        //    Spawn(8);
+        //if (Input.GetKeyDown(KeyCode.Alpha9))
+        //    Spawn(9);
     }
 
     public void Spawn(int key)

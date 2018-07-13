@@ -8,12 +8,24 @@ public class BreakableObject : MonoBehaviour {
     [SerializeField]
     private float deathDelay = 0;
 
-    public event Action OnBreak = delegate { };
+    private bool isPaused;
 
+    public event Action OnBreak = delegate { };
 
     public void DoBreak()
     {
+
         OnBreak();
         Destroy(gameObject, deathDelay);
+    }
+
+    public void Pause()
+    {
+
+    }
+
+    public void UnPause()
+    {
+
     }
 }

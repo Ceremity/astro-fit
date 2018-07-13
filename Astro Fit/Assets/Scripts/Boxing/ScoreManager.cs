@@ -11,7 +11,7 @@ public class ScoreManager : MonoBehaviour {
     public event Action onScoreChanged = delegate { };
 
     [SerializeField]
-    private TMPro.TextMeshProUGUI scoreText;
+    private TMPro.TMP_Text scoreText;
 
 
     private void Start()
@@ -26,8 +26,14 @@ public class ScoreManager : MonoBehaviour {
 
     private void Awake()
     {
-        score = 0;
-    }
+		ResetScore();
+		
+	}
+
+	public void ResetScore() {
+		score = 0;
+		updateText();
+	}
 
     private void updateText()
     {

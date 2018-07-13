@@ -136,8 +136,14 @@ public class ControllerEventListener : MonoBehaviour {
 		Debug.Log("Grip");
 		GameObject controllerCanvas = transform.Find("ControllerCanvas").gameObject;
 		if (controllerCanvas != null) {
+<<<<<<< HEAD
 			controllerCanvas.SetActive(!controllerCanvas.activeInHierarchy);
             SceneManagement.Instance.TogglePause();
+=======
+			controllerCanvas.SetActive(true);
+			SceneManagement.Instance.StopTime();
+			SceneManagement.Instance.PauseSong();
+>>>>>>> 53b86bbc2535a691b471d47268e925e7e606726f
 		}
 
 	}
@@ -147,7 +153,11 @@ public class ControllerEventListener : MonoBehaviour {
 
 
         //DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TRIGGER", "pressed", e);
+<<<<<<< HEAD
         //spawner.Spawn(UnityEngine.Random.Range(1, 9));
+=======
+        spawner.Spawn(UnityEngine.Random.Range(1, 9));
+>>>>>>> 53b86bbc2535a691b471d47268e925e7e606726f
     }
 
 }

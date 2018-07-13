@@ -13,8 +13,8 @@ public class BeatDriver : MonoBehaviour {
     
     List<Beat> beatz;
 
-    [SerializeField]
-    private AudioSource song;
+   
+    public AudioSource song;
 
     [SerializeField]
     private Spawner spawner;
@@ -34,24 +34,30 @@ public class BeatDriver : MonoBehaviour {
 
         beatz = new List<Beat>();
 
-        //for (int i = 0; i < 172; i++)
-        //{
-        //    //int randomLoc = Random.Range(1, 9);
-        //    beatz.Add(new Beat(i, Random.Range(1, 9)));
-        //    if (i % 4 == 1)
-        //    {
-        //        beatz.Add(new Beat(i + .5f, Random.Range(1, 9)));
-        //    }
-        //}
-        
-        StartCoroutine(StartSong());
-        Begin();
+		for (int i = 0; i < 172; i++) {
+			//int randomLoc = Random.Range(1, 9);
+			beatz.Add(new Beat(i, Random.Range(1, 9)));
+			if (i % 4 == 1) {
+				beatz.Add(new Beat(i + .5f, Random.Range(1, 9)));
+			}
+		}
+
+        //Begin();
 
     }
-    
-    private void Begin() {
 
-        foreach (Beat beat in beatz) {
+	public void ReplaySong() {
+		foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Breakable"))
+			Destroy(obj);
+
+		StopAllCoroutines();
+		Begin();
+	}
+    
+    public void Begin() {
+		SceneManagement.Instance.SetTime(1);
+		StartCoroutine(StartSong());
+		foreach (Beat beat in beatz) {
             StartCoroutine(SpawnOnTime(beat));
         }
     }
@@ -68,7 +74,7 @@ public class BeatDriver : MonoBehaviour {
     IEnumerator StartSong() {
 
         yield return new WaitForSeconds(startDelay);
-        
+		song.time = 0;
         song.Play();
     }
     

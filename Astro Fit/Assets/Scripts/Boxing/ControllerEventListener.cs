@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using VRTK;
@@ -33,7 +34,7 @@ public class ControllerEventListener : MonoBehaviour {
         //controllerEvents.TriggerAxisChanged += DoTriggerAxisChanged;
         //controllerEvents.TriggerSenseAxisChanged += DoTriggerSenseAxisChanged;
 
-        //controllerEvents.GripPressed += DoGripPressed;
+        controllerEvents.GripPressed += DoGripPressed;
         //controllerEvents.GripReleased += DoGripReleased;
         //controllerEvents.GripTouchStart += DoGripTouchStart;
         //controllerEvents.GripTouchEnd += DoGripTouchEnd;
@@ -73,7 +74,9 @@ public class ControllerEventListener : MonoBehaviour {
         //controllerEvents.PinkyFingerSenseAxisChanged += DoPinkyFingerSenseAxisChanged;
     }
 
-    private void OnDisable()
+	
+
+	private void OnDisable()
     {
         if (controllerEvents != null)
         {
@@ -88,7 +91,7 @@ public class ControllerEventListener : MonoBehaviour {
             //controllerEvents.TriggerAxisChanged -= DoTriggerAxisChanged;
             //controllerEvents.TriggerSenseAxisChanged -= DoTriggerSenseAxisChanged;
 
-            //controllerEvents.GripPressed -= DoGripPressed;
+            controllerEvents.GripPressed -= DoGripPressed;
             //controllerEvents.GripReleased -= DoGripReleased;
             //controllerEvents.GripTouchStart -= DoGripTouchStart;
             //controllerEvents.GripTouchEnd -= DoGripTouchEnd;
@@ -129,12 +132,23 @@ public class ControllerEventListener : MonoBehaviour {
         }
     }
 
-    private void DoTriggerPressed(object sender, ControllerInteractionEventArgs e)
+	private void DoGripPressed(object sender, ControllerInteractionEventArgs e) {
+		Debug.Log("Grip");
+		GameObject controllerCanvas = transform.Find("ControllerCanvas").gameObject;
+		if (controllerCanvas != null) {
+			controllerCanvas.SetActive(true);
+			SceneManagement.Instance.StopTime();
+			SceneManagement.Instance.PauseSong();
+		}
+
+	}
+
+	private void DoTriggerPressed(object sender, ControllerInteractionEventArgs e)
     {
 
 
         //DebugLogger(VRTK_ControllerReference.GetRealIndex(e.controllerReference), "TRIGGER", "pressed", e);
-        spawner.Spawn(Random.Range(1, 9));
+        spawner.Spawn(UnityEngine.Random.Range(1, 9));
     }
 
 }

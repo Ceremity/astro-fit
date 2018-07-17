@@ -40,7 +40,6 @@ public class Spawner : MonoBehaviour {
     }
 
     public void Spawn(Beat beat) {
-
         Spawn(beat.position);
     }
 }

@@ -12,6 +12,8 @@ public class ControllerEventListener : MonoBehaviour {
     [SerializeField]
     private Spawner spawner;
 
+    [SerializeField]
+    private GameObject PauseMenu;
 
     private void OnEnable()
     {
@@ -133,10 +135,8 @@ public class ControllerEventListener : MonoBehaviour {
     }
 
 	private void DoGripPressed(object sender, ControllerInteractionEventArgs e) {
-		Debug.Log("Grip");
-		GameObject controllerCanvas = transform.Find("ControllerCanvas").gameObject;
-		if (controllerCanvas != null) {
-			controllerCanvas.SetActive(!controllerCanvas.activeInHierarchy);
+		if (PauseMenu != null) {
+            PauseMenu.SetActive(!PauseMenu.activeInHierarchy);
             SceneManagement.Instance.TogglePause();
 		}
 

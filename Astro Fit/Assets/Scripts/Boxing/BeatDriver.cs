@@ -27,6 +27,7 @@ public class BeatDriver : MonoBehaviour {
 	private float startDelay;
 
 	private float currentTime;
+
 	private int delayedIndex;
 	private int undelayedIndex;
 
@@ -34,9 +35,10 @@ public class BeatDriver : MonoBehaviour {
 
 	public event Action OnDelayedBeat = delegate { };
 	public event Action OnUndelayedBeat = delegate { };
+    public event Action OnGameEnd = delegate { };
 
 
-	private void Awake() {
+    private void Awake() {
 		if (Instance == null)
 			Instance = this;
 		else
@@ -53,33 +55,34 @@ public class BeatDriver : MonoBehaviour {
         //		beatz.Add(new Beat(i + .5f, 5));
         //	}
         //}
-        readSong(JSONToSong("D:\\Git\\astro-fit\\Astro Fit\\Assets/Resources/Music/JSON/IDCIDK.json"));
+        readSong(JSONToSong("D:\\Git\\astro-fit\\Astro Fit\\Assets\\Resources\\Music\\JSON\\IDCIDK.json"));
 	}
 
 	void Update() {
 		if (!isRunning) 
 			return;
-		if (delayedIndex >= beatz.Count)
-			return;
-
+        if (undelayedIndex >= beatz.Count) {
+            Debug.Log("End");
+            OnGameEnd();
+            isRunning = false;
+            return;
+        }
+        Debug.Log(undelayedIndex + "  " + beatz.Count);
 		currentTime += Time.deltaTime;
 
 		float nextSpawnTime = beatz[delayedIndex].timestamp - distanceDelay;
-		if (currentTime >= nextSpawnTime) {
-			SpawnBeat(beatz[delayedIndex]);
-
-			OnDelayedBeat();
-			delayedIndex++;
-		}
+        if (currentTime >= nextSpawnTime) {
+            if (delayedIndex < beatz.Count - 1) {
+                SpawnBeat(beatz[delayedIndex]);
+                OnDelayedBeat();
+                delayedIndex++;
+            }
+        }
 		if(currentTime >= beatz[undelayedIndex].timestamp) {
 			OnUndelayedBeat();
 			undelayedIndex++;
 		}
-
 	}
-
-	 
-
 
 	public void ResetGame() {
         foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Breakable"))

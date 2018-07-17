@@ -8,9 +8,17 @@ public class Spawner : MonoBehaviour {
     private float size = 1f;
     [SerializeField]
     private GameObject breakablePrefab;
+    
+
 	void Update () {
         //if (Input.GetKeyDown(KeyCode.Alpha1))
-        //    Spawn(1);
+        //{
+        //    for(int i = 1; i <= 9; i++)
+        //    {
+        //        Spawn(i);
+        //    }
+        //}
+            
         //if (Input.GetKeyDown(KeyCode.Alpha2))
         //    Spawn(2);
         //if (Input.GetKeyDown(KeyCode.Alpha3))

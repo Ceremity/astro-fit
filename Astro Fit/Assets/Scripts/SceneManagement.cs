@@ -5,11 +5,54 @@ using UnityEngine;
 
 public class SceneManagement : MonoBehaviour {
 
-	public static SceneManagement Instance;
+    public static SceneManagement Instance;
     private bool isPaused = false;
-    
-    public void TogglePause()
-    {
+
+    [SerializeField]
+    private GameObject EndMenu;
+
+    [SerializeField]
+    private GameObject LosePrefab;
+
+    void Start() {
+        if (Instance == null)
+            Instance = this;
+        else
+            Destroy(this);
+
+        BeatDriver.Instance.OnGameEnd += EndGame;
+
+    }
+
+
+    public void StartGame() {
+        BeatDriver.Instance.ResetGame();
+        BeatDriver.Instance.StartSpawning();
+
+    }
+
+    public void EndGame() {
+        BeatDriver.Instance.ResetGame();
+        BeatDriver.Instance.Pause();
+        EndMenu.SetActive(true);
+    }
+
+    public void OnLose() {
+        Instantiate(LosePrefab);
+        EndGame();
+    }
+
+    public void Pause() {
+        SetTime(.001f);
+        BeatDriver.Instance.Pause();
+    }
+
+    public void UnPause() {
+        SetTime(1f);
+        BeatDriver.Instance.UnPause();
+    }
+
+    public void TogglePause() {
         if (isPaused)
             UnPause();
         else
@@ -18,32 +61,8 @@ public class SceneManagement : MonoBehaviour {
         isPaused = !isPaused;
     }
 
-    public void Pause()
-    {
-        StopTime();
-        BeatDriver.Instance.Pause();
+    public void SetTime(float time) {
+        Time.timeScale = time;
     }
-
-    public void UnPause()
-    {
-        SetTime(1);
-        BeatDriver.Instance.UnPause();
-    }
-
-    // Use this for initialization
-    void Start () {
-		if (Instance == null)
-			Instance = this;
-		else
-			Destroy(this);
-	}
-
-    public void StopTime() {
-		Time.timeScale = .001f;
-	}
-
-	public void SetTime(int time) {
-		Time.timeScale = time;
-	}
 
 }

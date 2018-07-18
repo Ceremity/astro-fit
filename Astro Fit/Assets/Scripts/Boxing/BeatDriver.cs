@@ -55,7 +55,7 @@ public class BeatDriver : MonoBehaviour {
         //		beatz.Add(new Beat(i + .5f, 5));
         //	}
         //}
-        readSong(JSONToSong("D:\\Unity Projects\\astro-fit\\Astro Fit\\Assets\\Resources\\Music\\JSON\\IDCIDK.json")); 
+        //readSong(JSONToSong("D:\\Git\\astro-fit\\Astro Fit\\Assets\\Resources\\Music\\JSON\\GodFury.json")); 
 	}
 
 	void Update() {
@@ -129,6 +129,7 @@ public class BeatDriver : MonoBehaviour {
     {
         string jsonString = File.ReadAllText(path);
         Song song = JsonUtility.FromJson<Song>(jsonString);
+        song.ImageSprite = Resources.Load<Sprite>(song.ImagePath) as Sprite;
         return song;
     }
 

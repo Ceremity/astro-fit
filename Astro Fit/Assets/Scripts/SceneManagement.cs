@@ -14,14 +14,15 @@ public class SceneManagement : MonoBehaviour {
     [SerializeField]
     private GameObject LosePrefab;
 
-    void Start() {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(this);
+	private void Awake() {
+		if (Instance == null)
+			Instance = this;
+		else
+			Destroy(this);
+	}
 
-        BeatDriver.Instance.OnGameEnd += EndGame;
-
+	void Start() {
+		BeatDriver.Instance.OnGameEnd += EndGame;
     }
 
 
@@ -33,7 +34,7 @@ public class SceneManagement : MonoBehaviour {
 
     public void EndGame() {
         BeatDriver.Instance.ResetGame();
-        BeatDriver.Instance.Pause();
+        //BeatDriver.Instance.Pause();
         EndMenu.SetActive(true);
     }
 
@@ -43,26 +44,46 @@ public class SceneManagement : MonoBehaviour {
     }
 
     public void Pause() {
+		Debug.Log("pause");
         SetTime(.001f);
         BeatDriver.Instance.Pause();
+		isPaused = true;
     }
 
     public void UnPause() {
-        SetTime(1f);
+		Debug.Log("unpause");
+		SetTime(1f);
         BeatDriver.Instance.UnPause();
-    }
+		isPaused = false;
 
-    public void TogglePause() {
+	}
+
+	public void TogglePause() {
         if (isPaused)
             UnPause();
         else
             Pause();
-
-        isPaused = !isPaused;
     }
 
     public void SetTime(float time) {
-        Time.timeScale = time;
-    }
+        if(time < .5) 
+			foreach(GameObject obj in GameObject.FindGameObjectsWithTag("Breakable")) {
+				Rigidbody rb = obj.GetComponent<Rigidbody>();
+				if (rb != null)
+					rb.isKinematic = true;
+			} 
+		else {
+			foreach (GameObject obj in GameObject.FindGameObjectsWithTag("Breakable")) {
+				Rigidbody rb = obj.GetComponent<Rigidbody>();
+				VelocityApplier ap = obj.GetComponent<VelocityApplier>();
+				RandomizeTorque rt = obj.GetComponent<RandomizeTorque>();
+				if (rb != null && ap != null && rt != null) {
+					rb.isKinematic = false;
+					ap.SetVelocity();
+					rt.setTorque();
+				}
+			}
+		}
+	}
 
 }

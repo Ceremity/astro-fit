@@ -136,8 +136,8 @@ public class ControllerEventListener : MonoBehaviour {
 
 	private void DoGripPressed(object sender, ControllerInteractionEventArgs e) {
 		if (PauseMenu != null) {
-            PauseMenu.SetActive(!PauseMenu.activeInHierarchy);
-            SceneManagement.Instance.TogglePause();
+			SceneManagement.Instance.TogglePause();
+			PauseMenu.SetActive(!PauseMenu.activeInHierarchy);
 		}
 
 	}

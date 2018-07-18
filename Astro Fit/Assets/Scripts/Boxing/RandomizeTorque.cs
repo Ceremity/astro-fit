@@ -16,7 +16,12 @@ public class RandomizeTorque : MonoBehaviour {
     // Use this for initialization
     void Start () {
         rb = GetComponent<Rigidbody>();
-        rb.AddTorque(transform.up * Random.Range(torqueMin, torqueMax) * Time.deltaTime);
-        rb.AddTorque(transform.forward * Random.Range(torqueMin, torqueMax) * Time.deltaTime);
-    }
+		setTorque();
+
+	}
+
+	public void setTorque() {
+		rb.AddTorque(transform.up * Random.Range(torqueMin, torqueMax) * Time.deltaTime);
+		rb.AddTorque(transform.forward * Random.Range(torqueMin, torqueMax) * Time.deltaTime);
+	}
 }

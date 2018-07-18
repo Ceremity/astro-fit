@@ -55,7 +55,7 @@ public class BeatDriver : MonoBehaviour {
         //		beatz.Add(new Beat(i + .5f, 5));
         //	}
         //}
-        readSong(JSONToSong("D:\\Git\\astro-fit\\Astro Fit\\Assets\\Resources\\Music\\JSON\\IDCIDK.json"));
+        readSong(JSONToSong("D:\\Unity Projects\\astro-fit\\Astro Fit\\Assets\\Resources\\Music\\JSON\\IDCIDK.json")); 
 	}
 
 	void Update() {
@@ -67,7 +67,6 @@ public class BeatDriver : MonoBehaviour {
             isRunning = false;
             return;
         }
-        Debug.Log(undelayedIndex + "  " + beatz.Count);
 		currentTime += Time.deltaTime;
 
 		float nextSpawnTime = beatz[delayedIndex].timestamp - distanceDelay;
@@ -90,6 +89,9 @@ public class BeatDriver : MonoBehaviour {
 
 		currentTime = -distanceDelay - startDelay;
 		delayedIndex = 0;
+		undelayedIndex = 0;
+		song.time = 0;
+		song.Pause();
 		isRunning = false;
 	}
 
@@ -118,7 +120,8 @@ public class BeatDriver : MonoBehaviour {
 
     public void UnPause()
     {
-        song.UnPause();
+		if(song != null)
+			song.UnPause();
         isRunning = true;
     }
 

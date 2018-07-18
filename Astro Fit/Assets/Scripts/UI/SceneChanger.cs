@@ -7,7 +7,8 @@ public class SceneChanger : MonoBehaviour {
 
 	
 	public void ChangeScene(int index) {
-		Debug.Log("changing scene");
+		if(SceneManagement.Instance != null)
+			SceneManagement.Instance.UnPause();
 		SceneManager.LoadScene(index);
 	}
 

@@ -13,22 +13,20 @@ public class ScoreManager : MonoBehaviour {
     [SerializeField]
     private TMPro.TMP_Text scoreText;
 
+	private void Awake() {
+		if (Instance == null)
+			Instance = this;
+		else
+			Destroy(this);
+		ResetScore();
+	}
 
-    private void Start()
+	private void Start()
     {
-        if (Instance == null)
-            Instance = this;
-        else
-            Destroy(this);
-
         onScoreChanged += updateText;
     }
 
-    private void Awake()
-    {
-		ResetScore();
-		
-	}
+ 
 
 	public void ResetScore() {
 		score = 0;

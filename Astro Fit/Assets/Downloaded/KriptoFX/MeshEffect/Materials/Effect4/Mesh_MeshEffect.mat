@@ -4,7 +4,7 @@
 Material:
   serializedVersion: 6
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
+  m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: Mesh_MeshEffect
   m_Shader: {fileID: 4800000, guid: 972a05a1fafc1c54d8287892f2a939b6, type: 3}
@@ -104,12 +104,12 @@ Material:
     - _ZWriteMode: 0
     m_Colors:
     - _Color: {r: 0.7941176, g: 0.8617208, b: 1, a: 1}
-    - _CutoutColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FresnelColor: {r: 0.6102941, g: 0.7581136, b: 1, a: 1}
+    - _CutoutColor: {r: 0.00699541, g: 1, b: 1, a: 1}
+    - _FresnelColor: {r: 0.0074990317, g: 1, b: 1, a: 1}
     - _HeightUVScrollDistort: {r: 0.01, g: -0.05, b: 0, a: 0}
-    - _MainColor: {r: 0.8308824, g: 0.8308824, b: 0.8308824, a: 1}
+    - _MainColor: {r: 0.00699541, g: 1, b: 1, a: 1}
     - _ReflectColor: {r: 0.6102941, g: 0.70973617, b: 1, a: 1}
     - _RimColor: {r: 0.5294118, g: 0.5294118, b: 0.5294118, a: 1}
     - _SpecColor: {r: 1, g: 1, b: 1, a: 1}
     - _Speed: {r: 0, g: 0, b: 0, a: 0}
-    - _TintColor: {r: 0.4852941, g: 0.5637931, b: 0.75, a: 0.13}
+    - _TintColor: {r: 0.008023192, g: 1, b: 1, a: 0.13}

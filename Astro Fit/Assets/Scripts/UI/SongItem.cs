@@ -11,6 +11,7 @@ public class SongItem : MonoBehaviour {
     private void Start() {
         GetComponent<Image>().sprite = song.ImageSprite;
         GetComponent<Button>().onClick.AddListener(loadSong);
+
     }
 
     private void loadSong() {

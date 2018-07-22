@@ -19,13 +19,13 @@ public class ButtonHandler : MonoBehaviour {
 	}
 
 	public void UnPauseButtonClick() {
+		ControllerReference.Instance.EnablePointers(false);
 		sceneManagement.UnPause();
 		deactivate();
-		
-		
 	}
 
 	public void RestartButtonClick() {
+		ControllerReference.Instance.EnablePointers(false);
 		scoreManager.ResetScore();
 		sceneManagement.UnPause();
 		beatDriver.ResetGame();

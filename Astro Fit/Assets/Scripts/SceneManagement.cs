@@ -26,16 +26,17 @@ public class SceneManagement : MonoBehaviour {
     }
 
 
-    public void StartGame() {
-        BeatDriver.Instance.ResetGame();
-        BeatDriver.Instance.StartSpawning();
+	public void StartGame() {
+		BeatDriver.Instance.ResetGame();
+		BeatDriver.Instance.StartSpawning();
 
-    }
+	}
 
-    public void EndGame() {
+	public void EndGame() {
         BeatDriver.Instance.ResetGame();
-        //BeatDriver.Instance.Pause();
-        EndMenu.SetActive(true);
+		//BeatDriver.Instance.Pause();
+		ControllerReference.Instance.EnablePointers(true);
+		EndMenu.SetActive(true);
     }
 
     public void OnLose() {
@@ -44,16 +45,17 @@ public class SceneManagement : MonoBehaviour {
     }
 
     public void Pause() {
-		Debug.Log("pause");
         SetTime(.001f);
-        BeatDriver.Instance.Pause();
+		ControllerReference.Instance.EnablePointers(true);
+		BeatDriver.Instance.Pause();
 		isPaused = true;
     }
 
     public void UnPause() {
 		Debug.Log("unpause");
 		SetTime(1f);
-        BeatDriver.Instance.UnPause();
+		ControllerReference.Instance.EnablePointers(false);
+		BeatDriver.Instance.UnPause();
 		isPaused = false;
 
 	}

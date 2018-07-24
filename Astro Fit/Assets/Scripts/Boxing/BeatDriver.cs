@@ -33,6 +33,8 @@ public class BeatDriver : MonoBehaviour {
 
 	private bool isRunning = false;
 
+    private HeartRateSim heartSim;
+
 	public event Action OnDelayedBeat = delegate { };
 	public event Action OnUndelayedBeat = delegate { };
     public event Action OnGameEnd = delegate { };
@@ -45,7 +47,7 @@ public class BeatDriver : MonoBehaviour {
 			Destroy(this);
 	}
 	void Start() {
-	
+        heartSim =  ScoreManager.Instance.GetComponent<HeartRateSim>();
 
         //beatz = new List<Beat>();
         //for (int i = 0; i < 172; i++) {
@@ -56,7 +58,7 @@ public class BeatDriver : MonoBehaviour {
         //	}
         //}
         //readSong(JSONToSong("D:\\Git\\astro-fit\\Astro Fit\\Assets\\Resources\\Music\\JSON\\GodFury.json")); 
-	}
+    }
 
 	void Update() {
 		if (!isRunning) 
@@ -64,6 +66,7 @@ public class BeatDriver : MonoBehaviour {
         if (undelayedIndex >= beatz.Count) {
             Debug.Log("End");
             OnGameEnd();
+            heartSim.isStarted = false;
             isRunning = false;
             return;
         }
@@ -109,6 +112,7 @@ public class BeatDriver : MonoBehaviour {
 		Debug.Log("waiting to start song");
 		yield return new WaitForSeconds(startDelay + distanceDelay);
 		Debug.Log("started song");
+        heartSim.isStarted = true;
 		song.Play();
 	}
 

@@ -5,18 +5,25 @@ using UnityEngine;
 public class HeartAnimateToBeat : MonoBehaviour {
 
 	private Animator anim;
+
+    [SerializeField]
+    private TMPro.TMP_Text heartRateText;
+
+    private HeartRateSim heartSim;
+
 	// Use this for initialization
 	void Start () {
 		anim = GetComponent<Animator>();
+        heartSim = ScoreManager.Instance.GetComponent<HeartRateSim>();
 		BeatDriver.Instance.OnUndelayedBeat += beat;
 	}
-	
-	// Update is called once per frame
-	void Update () {
 
-	}
+    private void Update() {
+        heartRateText.text = heartSim.getHeartBeat().ToString();
+    }
 
-	void beat() {
+
+    void beat() {
 		anim.Play("HeartBigBeat");
 	}
 }

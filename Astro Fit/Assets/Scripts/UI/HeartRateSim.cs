@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 public class HeartRateSim : MonoBehaviour {
+
+
     [SerializeField]
     private float heartBeatInitial = 70f;
     [SerializeField]
@@ -30,6 +32,8 @@ public class HeartRateSim : MonoBehaviour {
     private float time = 0f;
     private float index;
     private float heartBeatAverage;
+
+    
     
 
     private void Start() {

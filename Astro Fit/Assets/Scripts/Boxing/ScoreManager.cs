@@ -7,7 +7,8 @@ public class ScoreManager : MonoBehaviour {
 
     public static ScoreManager Instance;
 
-    private static int score { get;  set; }
+    public static int score { get;  set; }
+
     public event Action onScoreChanged = delegate { };
 
     [SerializeField]
@@ -18,6 +19,7 @@ public class ScoreManager : MonoBehaviour {
 			Instance = this;
 		else
 			Destroy(this);
+
 		ResetScore();
 	}
 
@@ -45,6 +47,9 @@ public class ScoreManager : MonoBehaviour {
     public void AddScore(int amt)
     {
         score += amt;
+        if(score > PlayerPrefs.GetInt("HighScore", 0)) {
+            PlayerPrefs.SetInt("HighScore", score);
+        }
         onScoreChanged();
     }
 }

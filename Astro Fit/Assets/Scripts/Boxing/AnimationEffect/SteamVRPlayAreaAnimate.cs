@@ -15,7 +15,6 @@ public class SteamVRPlayAreaAnimate : MonoBehaviour {
 	
 	// Update is called once per frame
 	void FixedUpdate () {
-		
 		if(playArea.color.a > .5) {
 			playArea.color.a-= speed;
 			playArea.BuildMesh();

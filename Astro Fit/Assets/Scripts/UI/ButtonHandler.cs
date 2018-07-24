@@ -36,8 +36,8 @@ public class ButtonHandler : MonoBehaviour {
 
 	private void deactivate() {
 		foreach (GameObject obj in deactivateThis) {
-			if (obj != null)
-				obj.SetActive(false);
+			//if (obj != null)
+			obj.SetActive(false);
 		}
 	}
 

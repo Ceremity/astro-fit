@@ -36,7 +36,7 @@ public class ControllerEventListener : MonoBehaviour {
         //controllerEvents.TriggerAxisChanged += DoTriggerAxisChanged;
         //controllerEvents.TriggerSenseAxisChanged += DoTriggerSenseAxisChanged;
 
-        controllerEvents.GripPressed += DoGripPressed;
+        //controllerEvents.GripPressed += DoGripPressed;
         //controllerEvents.GripReleased += DoGripReleased;
         //controllerEvents.GripTouchStart += DoGripTouchStart;
         //controllerEvents.GripTouchEnd += DoGripTouchEnd;
@@ -59,7 +59,7 @@ public class ControllerEventListener : MonoBehaviour {
         //controllerEvents.ButtonOneTouchStart += DoButtonOneTouchStart;
         //controllerEvents.ButtonOneTouchEnd += DoButtonOneTouchEnd;
 
-        //controllerEvents.ButtonTwoPressed += DoButtonTwoPressed;
+        controllerEvents.ButtonTwoPressed += DoButtonTwoPressed;
         //controllerEvents.ButtonTwoReleased += DoButtonTwoReleased;
         //controllerEvents.ButtonTwoTouchStart += DoButtonTwoTouchStart;
         //controllerEvents.ButtonTwoTouchEnd += DoButtonTwoTouchEnd;
@@ -93,7 +93,7 @@ public class ControllerEventListener : MonoBehaviour {
             //controllerEvents.TriggerAxisChanged -= DoTriggerAxisChanged;
             //controllerEvents.TriggerSenseAxisChanged -= DoTriggerSenseAxisChanged;
 
-            controllerEvents.GripPressed -= DoGripPressed;
+            //controllerEvents.GripPressed -= DoGripPressed;
             //controllerEvents.GripReleased -= DoGripReleased;
             //controllerEvents.GripTouchStart -= DoGripTouchStart;
             //controllerEvents.GripTouchEnd -= DoGripTouchEnd;
@@ -116,7 +116,7 @@ public class ControllerEventListener : MonoBehaviour {
             //controllerEvents.ButtonOneTouchStart -= DoButtonOneTouchStart;
             //controllerEvents.ButtonOneTouchEnd -= DoButtonOneTouchEnd;
 
-            //controllerEvents.ButtonTwoPressed -= DoButtonTwoPressed;
+            controllerEvents.ButtonTwoPressed -= DoButtonTwoPressed;
             //controllerEvents.ButtonTwoReleased -= DoButtonTwoReleased;
             //controllerEvents.ButtonTwoTouchStart -= DoButtonTwoTouchStart;
             //controllerEvents.ButtonTwoTouchEnd -= DoButtonTwoTouchEnd;
@@ -134,13 +134,17 @@ public class ControllerEventListener : MonoBehaviour {
         }
     }
 
-	private void DoGripPressed(object sender, ControllerInteractionEventArgs e) {
-		if (PauseMenu != null) {
-			SceneManagement.Instance.TogglePause();
-			PauseMenu.SetActive(!PauseMenu.activeInHierarchy);
-		}
+ 
 
-	}
+    private void DoButtonTwoPressed(object sender, ControllerInteractionEventArgs e) {
+        if (PauseMenu != null) {
+            SceneManagement.Instance.TogglePause();
+            PauseMenu.SetActive(!PauseMenu.activeInHierarchy);
+        }
+
+    }
+
+    
 
 	private void DoTriggerPressed(object sender, ControllerInteractionEventArgs e)
     {
